@@ -16,15 +16,6 @@ export default function MediaCard({win}) {
     WinContext
   );
 
-  const getWinById = async () => {
-    try {
-      const res = await api.get(`/wins/${id}`);
-      setSelectedWin(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     const getWinById = async () => {
       try {

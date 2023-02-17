@@ -11,8 +11,6 @@ import Home from './routes/home/Home';
 import NotFound from './components/notFound/NotFound';
 import WinDetail from './routes/winDetail/WinDetail';
 
-
-
 function App() {
   const [wins, setWins] = useState([]);
   const [selectedWin, setSelectedWin] = useState();
