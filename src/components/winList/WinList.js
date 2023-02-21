@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import WinContext from '../../WinContext';
 
 const WinList = () => {
-  const { wins, setSelectedWin } = useContext(WinContext)
+  const { wins } = useContext(WinContext)
   let navigate = useNavigate();
 
   const handleWinSelect = id => {
@@ -25,7 +25,7 @@ const WinList = () => {
             <TableCell align="left">Year Month</TableCell>
             <TableCell align="left">Title</TableCell>
             <TableCell align="left">Description</TableCell>
-            <TableCell align="left">Highlight</TableCell>
+            <TableCell align="left">Favorite</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
