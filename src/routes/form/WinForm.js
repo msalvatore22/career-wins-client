@@ -59,16 +59,15 @@ const WinCreateForm = () => {
   };
 
   return (
-
-    <form onSubmit={handleSubmit}>
+    <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
+    <form style={{width: "80%", marginTop: "30px"}} onSubmit={handleSubmit}>
       <FormGroup>
         <TextField 
           id="standard-basic" 
           label="Title" 
           variant="standard" 
           type="text" 
-          value={title} 
-          placeholder="Title" 
+          value={title}  
           onChange={(e) => setTitle(e.target.value)}
         />
         <TextField 
@@ -77,7 +76,6 @@ const WinCreateForm = () => {
           variant="standard" 
           type="text" 
           value={description} 
-          placeholder="Description"
           multiline
           rows={4} 
           onChange={(e) => setDescription(e.target.value)}
@@ -88,17 +86,21 @@ const WinCreateForm = () => {
           variant="standard" 
           type="text" 
           value={impact} 
-          placeholder="Impact" 
           multiline
           rows={4}
           onChange={(e) => setImpact(e.target.value)}
         />
-        <FormControlLabel control={
-          <Checkbox 
-            onClick={() => setFavorite(!favorite)}
-          />
-        } label="Favorite" />
+        <FormControlLabel
+          sx={{mt: 2}}
+          control={
+            <Checkbox 
+              onClick={() => setFavorite(!favorite)}
+            />
+          } 
+          label="Favorite" 
+        />
         <TextField 
+          sx={{mt: 2}}
           id="standard-basic" 
           label="Year" 
           variant="standard" 
@@ -108,7 +110,7 @@ const WinCreateForm = () => {
             readOnly: true,
           }}
         />
-        <InputLabel id="month-select-label">Month</InputLabel>
+        <InputLabel sx={{mt: 2}} id="month-select-label">Month</InputLabel>
         <Select
           labelId="month-select-label"
           id="month-select"
@@ -123,8 +125,9 @@ const WinCreateForm = () => {
           }
         </Select>
       </FormGroup>
-      <Button variant="contained" color="secondary" type="submit">Submit</Button>
+      <Button sx={{mt: 2}} variant="contained" color="secondary" type="submit">Submit</Button>
     </form>
+    </div>
   )
 }
 

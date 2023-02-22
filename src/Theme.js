@@ -13,6 +13,12 @@ const theme = createTheme({
       main: '#00bcd4',
       dark: '#33c9dc',
       contrastText: '#000',
+    },
+    delete: {
+      main: '#ff1744'
+    },
+    favorite: {
+      main: '#ffeb3b'
     }
   },
 });

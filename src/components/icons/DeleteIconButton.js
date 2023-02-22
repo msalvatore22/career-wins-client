@@ -29,7 +29,7 @@ const DeleteIconButton = ({win}) => {
   }
 
   return (
-    <DeleteForeverIcon sx={{cursor: "pointer"}} onClick={() => handleDelete(win._id.$oid)} />
+    <DeleteForeverIcon color='delete' sx={{cursor: "pointer"}} onClick={() => handleDelete(win._id.$oid)} />
   )
 }
 

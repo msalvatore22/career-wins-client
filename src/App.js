@@ -17,8 +17,8 @@ import WinCreateForm from './routes/form/WinForm';
 import WinEditForm from './routes/form/WinEditForm';
 
 function App() {
+  
   const [wins, setWins] = useState([]);
-  const [selectedWin, setSelectedWin] = useState();
 
   const getWins = async () => {
     try {
@@ -31,16 +31,14 @@ function App() {
 
   useEffect(() => {
     getWins()
-  }, [wins])
+  }, [])
   
   return (
     <ThemeProvider theme={theme}>
     <WinContext.Provider
       value={{
         wins,
-        setWins,
-        selectedWin,
-        setSelectedWin
+        setWins
       }}
     >
     <div className="App">

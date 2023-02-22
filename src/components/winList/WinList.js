@@ -37,7 +37,7 @@ const WinList = () => {
               <TableCell align="left">{win.yearMonth}</TableCell>
               <TableCell align="left">{win.title}</TableCell>
               
-              <TableCell align="center">{win.favorite ? <GradeIcon /> : ""}</TableCell>
+              <TableCell align="center">{win.favorite ? <GradeIcon color='favorite' /> : ""}</TableCell>
               <TableCell align="center"><InfoIconButton win={win} /></TableCell>
               <TableCell align="center"><EditIconButton win={win} /></TableCell>
               <TableCell align="center"><DeleteIconButton win={win} /></TableCell>
