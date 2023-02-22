@@ -13,7 +13,8 @@ import Home from './routes/home/Home';
 import NotFound from './components/notFound/NotFound';
 import WinDetail from './routes/winDetail/WinDetail';
 import NavBar from './components/navbar/NavBar';
-import WinForm from './routes/form/WinForm';
+import WinCreateForm from './routes/form/WinForm';
+import WinEditForm from './routes/form/WinEditForm';
 
 function App() {
   const [wins, setWins] = useState([]);
@@ -30,7 +31,7 @@ function App() {
 
   useEffect(() => {
     getWins()
-  }, [])
+  }, [wins])
   
   return (
     <ThemeProvider theme={theme}>
@@ -48,8 +49,9 @@ function App() {
         <Route path="/" element={<Layout />} >
           <Route path="/" element={<Home />}></Route>
           <Route path="wins/:id" element={<WinDetail />}></Route>
-          <Route path="wins/create" element={<WinForm />}></Route>
-          <Route path="*" element = {<NotFound/>}></Route>
+          <Route path="wins/create" element={<WinCreateForm />}></Route>
+          <Route path="wins/edit/:id" element={<WinEditForm />}></Route>
+          <Route path="*" element={<NotFound/>}></Route>
         </Route>
       </Routes>
     </div>

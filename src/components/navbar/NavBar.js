@@ -6,10 +6,15 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 export default function NavBar() {
-  const theme = useTheme()
+  let navigate = useNavigate();
+
+  const handleNavigate = id => {
+    navigate("/")
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }} >
       <AppBar position="static">
@@ -24,7 +29,7 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} color='secondary'>
+          <Typography onClick={() => handleNavigate()} variant="h6" component="div" sx={{ flexGrow: 1, cursor: "pointer" }} color='secondary'>
             CareerWins
           </Typography>
           {/* <Button color="inherit">Login</Button> */}

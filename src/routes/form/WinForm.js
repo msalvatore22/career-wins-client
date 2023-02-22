@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import api from '../../api/axiosConfig'
 import { Button, TextField, FormGroup, FormControlLabel, MenuItem, Select, Checkbox, InputLabel } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const currentYear = new Date().getFullYear()
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -15,13 +16,19 @@ const generateYearMonth = (currentYear, monthName) => {
   return currentYear + "-" + monthNumber
 }
 
-const WinForm = () => {
+const WinCreateForm = () => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [impact, setImpact] = useState("")
   const [favorite, setFavorite] = useState(false)
   const [message, setMessage] = useState("")
   const [month, setMonth] = useState("")
+  let navigate = useNavigate();
+
+  const handleNavigate = id => {
+    navigate(`/wins/${id}`)
+  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,14 +50,16 @@ const WinForm = () => {
       } else {
         setMessage("Some error occured");
       }
+      console.log(message)
+      setMessage("")
+      handleNavigate(response.data._id)
     } catch (err) {
       console.log(err);
     }
-    console.log(message)
-    setMessage("")
   };
 
   return (
+
     <form onSubmit={handleSubmit}>
       <FormGroup>
         <TextField 
@@ -119,5 +128,5 @@ const WinForm = () => {
   )
 }
 
-export default WinForm
+export default WinCreateForm
 

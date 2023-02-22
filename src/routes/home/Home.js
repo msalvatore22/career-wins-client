@@ -9,6 +9,7 @@ const Home = () => {
   const handleCreateClick = () => {
     navigate("/wins/create")
   }
+  
   return (
     <div style={{textAlign: 'center'}} >
       <Button style={{margin: '30px 0'}} variant="contained" onClick={() => handleCreateClick()}>Create</Button>
