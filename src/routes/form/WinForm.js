@@ -1,20 +1,10 @@
 import {useState, useEffect} from 'react';
 import api from '../../api/axiosConfig'
-import { Button, TextField, FormGroup, FormControlLabel, MenuItem, Select, InputLabel, Switch } from '@mui/material';
+import { Button, TextField, FormGroup, FormControlLabel, Switch } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
-
-const currentYear = new Date().getFullYear()
-const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-
-const generateYearMonth = (currentYear, monthName) => {
-  let monthNumber = monthNames.indexOf(monthName)+1
-  if (monthNumber.toString().length === 1){
-    monthNumber = "0"+String(monthNumber)
-  } else {
-    monthNumber = String(monthNumber)
-  }
-  return currentYear + "-" + monthNumber
-}
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const WinForm = () => {
   const { id } = useParams();
@@ -23,7 +13,7 @@ const WinForm = () => {
   const [impact, setImpact] = useState("")
   const [favorite, setFavorite] = useState(false)
   const [message, setMessage] = useState("")
-  const [month, setMonth] = useState("")
+  const [winDate, setWinDate] = useState("")
 
   useEffect(() => {
     if(id){
@@ -34,6 +24,7 @@ const WinForm = () => {
           setDescription(res.data.description)
           setImpact(res.data.impact)
           setFavorite(res.data.favorite)
+          setWinDate(res.data.winDate)
         } catch (error) {
           console.log(error);
         }
@@ -52,22 +43,20 @@ const WinForm = () => {
     try {
       let response
       if(id){
-        console.log("running the put call")
         response = await api.put(`/wins/${id}`, {
           title,
           description,
           impact,
           favorite,
-          yearMonth: generateYearMonth(currentYear, month)
+          winDate
         })
       } else {
-        console.log("running the post call")
         response = await api.post("/wins", {
           title,
           description,
           impact,
           favorite,
-          yearMonth: generateYearMonth(currentYear, month)
+          winDate
         })
       }
       if (response.status === 201 || response.status === 200) {
@@ -75,7 +64,7 @@ const WinForm = () => {
         setDescription("")
         setImpact("")
         setFavorite("")
-        setMonth("")
+        setWinDate("")
         setMessage("Win created successfully");
       } else {
         setMessage("Some error occured");
@@ -122,6 +111,7 @@ const WinForm = () => {
         />
         <FormControlLabel
           sx={{mt: 2}}
+          label="Favorite" 
           control={
             <Switch
               checked={favorite}
@@ -129,34 +119,19 @@ const WinForm = () => {
               inputProps={{ 'aria-label': 'controlled' }}
             />
           } 
-          label="Favorite" 
+          
         />
-        
-        <TextField 
-          sx={{mt: 2}}
-          id="standard-basic" 
-          label="Year" 
-          variant="standard" 
-          type="text" 
-          value="2022"
-          InputProps={{
-            readOnly: true,
-          }}
-        />
-        <InputLabel sx={{mt: 2}} id="month-select-label">Month</InputLabel>
-        <Select
-          labelId="month-select-label"
-          id="month-select"
-          value={month}
-          label="Month"
-          onChange={(e) => setMonth(e.target.value)}
-        >
-          {
-            monthNames.map(m => {
-              return <MenuItem key={m} value={m}>{m}</MenuItem>
-            })
-          }
-        </Select>
+
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            label="Career Win Date"
+            value={winDate}
+            onChange={(newValue) => {
+              setWinDate(newValue.format("MM-DD-YYYY"));
+            }}
+            renderInput={(params) => <TextField sx={{mt: 2}} {...params} />}
+          />
+        </LocalizationProvider>
       </FormGroup>
       <Button sx={{mt: 2}} variant="contained" color="secondary" type="submit">Submit</Button>
     </form>

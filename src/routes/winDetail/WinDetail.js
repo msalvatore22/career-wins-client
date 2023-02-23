@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from '../../api/axiosConfig';
-import { Card, CardActions, CardContent, Typography, Divider, CircularProgress, Grid, Box } from "@mui/material";
+import { Card, CardActions, CardContent, Typography, Divider, CircularProgress, Grid } from "@mui/material";
 import EditIconButton from '../../components/buttons/EditIconButton'
 import DeleteButton from '../../components/buttons/DeleteIconButton'
 
@@ -29,7 +29,7 @@ export default function WinDetail() {
             <Typography gutterBottom variant="h5" component="div">
               {selectedWin.title}
               <Typography sx={{ml: 2}} variant="caption" display="inline-block" gutterBottom>
-                {selectedWin.yearMonth}
+                {selectedWin.winDate}
               </Typography>
             </Typography>
             <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>

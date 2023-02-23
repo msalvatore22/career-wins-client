@@ -31,7 +31,7 @@ const WinList = () => {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="left">Year Month</TableCell>
+            <TableCell align="left">Date</TableCell>
             <TableCell align="left">Title</TableCell>
             <TableCell align="center">Favorite</TableCell>
             <TableCell align="center">Info</TableCell>
@@ -43,9 +43,8 @@ const WinList = () => {
               key={win._id.$oid}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell align="left">{win.yearMonth}</TableCell>
+              <TableCell align="left">{win.winDate}</TableCell>
               <TableCell align="left">{win.title}</TableCell>
-              
               <TableCell align="center">{win.favorite ? <GradeIcon color='secondary' /> : ""}</TableCell>
               <TableCell align="center"><InfoIconButton win={win} /></TableCell>
             </TableRow>     

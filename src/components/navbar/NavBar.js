@@ -32,7 +32,7 @@ export default function NavBar() {
           <Typography onClick={() => handleNavigate()} variant="h6" component="div" sx={{ flexGrow: 1, cursor: "pointer" }} color='secondary'>
             CareerWins
           </Typography>
-          {/* <Button color="inherit">Login</Button> */}
+          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </Box>
