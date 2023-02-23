@@ -4,8 +4,6 @@ import api from '../../api/axiosConfig';
 import { Card, CardActions, CardContent, Typography, Divider, CircularProgress } from "@mui/material";
 import EditIconButton from '../../components/icons/EditIconButton'
 import DeleteIconButton from '../../components/icons/DeleteIconButton'
-import { display } from "@mui/system";
-
 
 export default function WinDetail() {
   const { id } = useParams();
@@ -21,7 +19,7 @@ export default function WinDetail() {
       }
     };
     getWinById()
-  })
+  }, [id])
 
   if(selectedWin){
     return (

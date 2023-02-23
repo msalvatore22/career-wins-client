@@ -40,7 +40,7 @@ const WinForm = () => {
       };
       getWinById()
     }
-  })
+  }, [id])
   
   let navigate = useNavigate();
   const handleNavigate = id => {
@@ -50,14 +50,28 @@ const WinForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post("/wins", {
-        title,
-        description,
-        impact,
-        favorite,
-        yearMonth: generateYearMonth(currentYear, month)
-      })
-      if (response.status === 201) {
+      let response
+      if(id){
+        console.log("running the put call")
+        response = await api.put(`/wins/${id}`, {
+          title,
+          description,
+          impact,
+          favorite,
+          yearMonth: generateYearMonth(currentYear, month)
+        })
+      } else {
+        console.log("running the post call")
+        response = await api.post("/wins", {
+          title,
+          description,
+          impact,
+          favorite,
+          yearMonth: generateYearMonth(currentYear, month)
+        })
+      }
+
+      if (response.status === 201 || response.status === 200) {
         setTitle("")
         setDescription("")
         setImpact("")
