@@ -1,5 +1,5 @@
 import React from 'react'
-import EditIcon from '@mui/icons-material/Edit';
+import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const EditIconButton = ({win}) => {
@@ -9,7 +9,7 @@ const EditIconButton = ({win}) => {
     navigate(`/wins/edit/${id}`)
   }
   return (
-    <EditIcon color='secondary' sx={{cursor: "pointer"}} onClick={() => handleNavigate(win._id.$oid)} />
+    <Button color='secondary' variant='outlined' sx={{cursor: "pointer", mr: 1}} onClick={() => handleNavigate(win._id.$oid)}>Edit</Button>
   )
 }
 

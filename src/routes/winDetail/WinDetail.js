@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from '../../api/axiosConfig';
-import { Card, CardActions, CardContent, Typography, Divider, CircularProgress } from "@mui/material";
-import EditIconButton from '../../components/icons/EditIconButton'
-import DeleteIconButton from '../../components/icons/DeleteIconButton'
+import { Card, CardActions, CardContent, Typography, Divider, CircularProgress, Grid, Box } from "@mui/material";
+import EditIconButton from '../../components/buttons/EditIconButton'
+import DeleteButton from '../../components/buttons/DeleteIconButton'
 
 export default function WinDetail() {
   const { id } = useParams();
@@ -26,7 +26,7 @@ export default function WinDetail() {
       <div style={{display: "flex", flexDirection: "row", alignContent: "center", justifyContent: "center", marginTop: "30px"}}>
         <Card variant="outlined" sx={{ maxWidth: 800 }}>
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
+            <Typography gutterBottom variant="h5" component="div">
               {selectedWin.title}
               <Typography sx={{ml: 2}} variant="caption" display="inline-block" gutterBottom>
                 {selectedWin.yearMonth}
@@ -40,19 +40,23 @@ export default function WinDetail() {
                  Impact
               </Typography>
             </div>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
-            <Typography sx={{mr: 1}} variant="body1" color="text.secondary">
-              {selectedWin.description}
-            </Typography>
-            <Divider orientation="vertical" flexItem></Divider>
-            <Typography sx={{ml: 1}} variant="body1" color="text.secondary">
-              {selectedWin.impact}
-            </Typography>
-            </div>
+            <Grid container>
+              <Grid item xs>
+              <Typography sx={{mr: 1}} variant="body1" color="text.secondary">
+                {selectedWin.description}
+              </Typography>
+              </Grid>
+              <Divider orientation="vertical" flexItem></Divider>
+              <Grid item xs>
+              <Typography sx={{ml: 1}} variant="body1" color="text.secondary">
+                {selectedWin.impact}
+              </Typography>
+              </Grid>
+            </Grid>
           </CardContent>
           <CardActions disableSpacing sx={{display: "flex", justifyContent: "flex-end"}}>
             <EditIconButton win={selectedWin} />
-            <DeleteIconButton win={selectedWin} />
+            <DeleteButton win={selectedWin} />
           </CardActions>
         </Card>
       </div>

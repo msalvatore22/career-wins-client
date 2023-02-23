@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api/axiosConfig'
 
-const DeleteIconButton = ({win}) => {
+const DeleteButton = ({win}) => {
   const [message, setMessage] = useState("")
   let navigate = useNavigate();
 
@@ -29,8 +29,8 @@ const DeleteIconButton = ({win}) => {
   }
 
   return (
-    <DeleteForeverIcon color='delete' sx={{cursor: "pointer"}} onClick={() => handleDelete(win._id.$oid)} />
+    <Button color='delete' variant='outlined' sx={{cursor: "pointer"}} onClick={() => handleDelete(win._id.$oid)}>Delete</Button>
   )
 }
 
-export default DeleteIconButton
+export default DeleteButton

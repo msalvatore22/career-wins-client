@@ -8,13 +8,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import GradeIcon from '@mui/icons-material/Grade';
-import EditIconButton from '../icons/EditIconButton';
 import InfoIconButton from '../icons/InfoIconButton';
-import DeleteIconButton from '../icons/DeleteIconButton';
+
 
 const WinList = () => {
   const [wins, setWins] = useState();
-  
+
   useEffect(() => {
     const getWins = async () => {
       try {
@@ -36,8 +35,6 @@ const WinList = () => {
             <TableCell align="left">Title</TableCell>
             <TableCell align="center">Favorite</TableCell>
             <TableCell align="center">Info</TableCell>
-            <TableCell align="center">Edit</TableCell>
-            <TableCell align="center">Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -49,10 +46,8 @@ const WinList = () => {
               <TableCell align="left">{win.yearMonth}</TableCell>
               <TableCell align="left">{win.title}</TableCell>
               
-              <TableCell align="center">{win.favorite ? <GradeIcon color='favorite' /> : ""}</TableCell>
+              <TableCell align="center">{win.favorite ? <GradeIcon color='secondary' /> : ""}</TableCell>
               <TableCell align="center"><InfoIconButton win={win} /></TableCell>
-              <TableCell align="center"><EditIconButton win={win} /></TableCell>
-              <TableCell align="center"><DeleteIconButton win={win} /></TableCell>
             </TableRow>     
           ))}
         </TableBody>
