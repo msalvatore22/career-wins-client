@@ -9,9 +9,9 @@ const Home = () => {
   const handleCreateClick = () => {
     navigate("/wins/create")
   }
-  
+
   return (
-    <div style={{textAlign: 'center'}} >
+    <div style={{textAlign: 'center', display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: "center"}} >
       <Button style={{margin: '30px 0'}} variant="contained" onClick={() => handleCreateClick()}>Create</Button>
       <WinList></WinList>
     </div>

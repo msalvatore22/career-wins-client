@@ -9,7 +9,7 @@ const EditIconButton = ({win}) => {
     navigate(`/wins/edit/${id}`)
   }
   return (
-    <EditIcon sx={{cursor: "pointer"}} onClick={() => handleNavigate(win._id.$oid)} />
+    <EditIcon color='secondary' sx={{cursor: "pointer"}} onClick={() => handleNavigate(win._id.$oid)} />
   )
 }
 
