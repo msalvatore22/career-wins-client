@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,9 +7,12 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
+import api from "../../api/axiosConfig";
+import TokenContext from '../../TokenContext';
 
 export default function NavBar(props) {
-  const {token, removeToken } = props
+  const { removeToken } = props
+  const { token } = useContext(TokenContext)
   
   let navigate = useNavigate();
 
@@ -18,6 +21,19 @@ export default function NavBar(props) {
   }
 
   const handleNavigateLogin = () => {
+    navigate("/login")
+  }
+
+  const handleLogout = async () => {
+    try {
+      const res = await api({
+        method: "POST",
+        url: "/logout"
+      })
+    } catch(error){
+      console.log(error)
+    }
+    removeToken()
     navigate("/login")
   }
 
@@ -42,7 +58,7 @@ export default function NavBar(props) {
             !token && token!=="" &&token!== undefined ? 
             <Button onClick={() => handleNavigateLogin()} color="inherit">Login</Button>
             :
-            <Button onClick={() => removeToken()} color="inherit">Logout</Button>
+            <Button onClick={() => handleLogout()} color="inherit">Logout</Button>
           }
           
         </Toolbar>

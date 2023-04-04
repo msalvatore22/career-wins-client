@@ -20,7 +20,7 @@ function App() {
     <TokenContext.Provider value={{token}}>
     <ThemeProvider theme={theme}>
     <div className="App">
-      <NavBar token={token} removeToken={removeToken} ></NavBar>
+      <NavBar removeToken={removeToken} ></NavBar>
       <Routes>
         <Route path="/" element={<Layout />} >
           {
