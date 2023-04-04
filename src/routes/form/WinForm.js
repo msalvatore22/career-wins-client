@@ -1,10 +1,11 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import api from '../../api/axiosConfig'
 import { Button, TextField, FormGroup, FormControlLabel, Switch } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import TokenContext from '../../TokenContext';
 
 const WinForm = () => {
   const { id } = useParams();
@@ -15,11 +16,20 @@ const WinForm = () => {
   const [message, setMessage] = useState("")
   const [winDate, setWinDate] = useState("")
 
+  const { token } = useContext(TokenContext)
+
   useEffect(() => {
     if(id){
       const getWinById = async () => {
         try {
-          const res = await api.get(`/wins/${id}`);
+          const res = await api({
+            method: "GET",
+            url: `/wins/${id}`,
+            headers: {
+              Authorization: 'Bearer ' + token
+            }
+          })
+
           setTitle(res.data.title)
           setDescription(res.data.description)
           setImpact(res.data.impact)
@@ -43,20 +53,34 @@ const WinForm = () => {
     try {
       let response
       if(id){
-        response = await api.put(`/wins/${id}`, {
-          title,
-          description,
-          impact,
-          favorite,
-          winDate
+        response = await api({
+          method: "PUT",
+          url: `/wins/${id}`,
+          headers: {
+            Authorization: 'Bearer ' + token
+          },
+          data: {
+            title,
+            description,
+            impact,
+            favorite,
+            winDate
+          }
         })
       } else {
-        response = await api.post("/wins", {
-          title,
-          description,
-          impact,
-          favorite,
-          winDate
+        response = await api({
+          method: "POST",
+          url: "/wins",
+          headers: {
+            Authorization: 'Bearer ' + token
+          },
+          data: {
+            title,
+            description,
+            impact,
+            favorite,
+            winDate
+          }
         })
       }
       if (response.status === 201 || response.status === 200) {
@@ -71,7 +95,8 @@ const WinForm = () => {
       }
       console.log(message)
       setMessage("")
-      handleNavigate(response.data._id)
+      console.log(response.data)
+      handleNavigate(response.data.id)
     } catch (err) {
       console.log(err);
     }

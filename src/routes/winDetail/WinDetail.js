@@ -1,18 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import api from '../../api/axiosConfig';
 import { Card, CardActions, CardContent, Typography, Divider, CircularProgress, Grid } from "@mui/material";
 import EditIconButton from '../../components/buttons/EditIconButton'
 import DeleteButton from '../../components/buttons/DeleteIconButton'
+import TokenContext from "../../TokenContext";
 
 export default function WinDetail() {
   const { id } = useParams();
   const [selectedWin, setSelectedWin] = useState();
+  const { token } = useContext(TokenContext)
 
   useEffect(() => {
     const getWinById = async () => {
       try {
-        const res = await api.get(`/wins/${id}`);
+        const res = await api({
+          method: "GET",
+          url: `/wins/${id}`,
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
+        })
         setSelectedWin(res.data);
       } catch (error) {
         console.log(error);

@@ -10,7 +10,7 @@ const InfoIconButton = ({win}) => {
   }
 
   return (
-    <InfoIcon sx={{cursor: "pointer"}} onClick={() => handleNavigate(win._id.$oid)} />
+    <InfoIcon sx={{cursor: "pointer"}} onClick={() => handleNavigate(win.id)} />
   )
 }
 

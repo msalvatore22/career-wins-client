@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import api from '../../api/axiosConfig'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,16 +9,23 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import GradeIcon from '@mui/icons-material/Grade';
 import InfoIconButton from '../icons/InfoIconButton';
-
+import TokenContext from '../../TokenContext';
 
 const WinList = () => {
   const [wins, setWins] = useState();
+  const { token } = useContext(TokenContext)
 
   useEffect(() => {
     const getWins = async () => {
       try {
-        const response = await api.get("/wins")
-        setWins(response.data)
+        const response = await api({
+          method: "GET",
+          url: "/user",
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
+        })
+        setWins(response.data.user.wins)
       } catch (error) {
         console.log(error)
       }
@@ -40,7 +47,7 @@ const WinList = () => {
         <TableBody>
           {wins?.map((win) => (
             <TableRow
-              key={win._id.$oid}
+              key={win.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell align="left">{win.winDate}</TableCell>

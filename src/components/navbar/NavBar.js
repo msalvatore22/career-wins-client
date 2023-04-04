@@ -8,11 +8,17 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 
-export default function NavBar() {
+export default function NavBar(props) {
+  const {token, removeToken } = props
+  
   let navigate = useNavigate();
 
   const handleNavigate = id => {
-    navigate("/")
+    navigate("/home")
+  }
+
+  const handleNavigateLogin = () => {
+    navigate("/login")
   }
 
   return (
@@ -32,7 +38,13 @@ export default function NavBar() {
           <Typography onClick={() => handleNavigate()} variant="h6" component="div" sx={{ flexGrow: 1, cursor: "pointer" }} color='secondary'>
             CareerWins
           </Typography>
-          <Button color="inherit">Login</Button>
+          {
+            !token && token!=="" &&token!== undefined ? 
+            <Button onClick={() => handleNavigateLogin()} color="inherit">Login</Button>
+            :
+            <Button onClick={() => removeToken()} color="inherit">Logout</Button>
+          }
+          
         </Toolbar>
       </AppBar>
     </Box>
