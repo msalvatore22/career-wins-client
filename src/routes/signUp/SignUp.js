@@ -49,7 +49,7 @@ export default function SignUp() {
   let navigate = useNavigate();
 
   const handleNavClick = () => {
-    navigate("/login")
+    navigate("/signIn")
   }
 
   return (

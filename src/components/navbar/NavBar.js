@@ -17,11 +17,15 @@ export default function NavBar(props) {
   let navigate = useNavigate();
 
   const handleNavigate = id => {
+    navigate("/")
+  }
+
+  const handleHomeNavigate = id => {
     navigate("/home")
   }
 
   const handleNavigateLogin = () => {
-    navigate("/login")
+    navigate("/signIn")
   }
 
   const handleLogout = async () => {
@@ -34,7 +38,7 @@ export default function NavBar(props) {
       console.log(error)
     }
     removeToken()
-    navigate("/login")
+    navigate("/signIn")
   }
 
   return (
@@ -51,14 +55,23 @@ export default function NavBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography onClick={() => handleNavigate()} variant="h6" component="div" sx={{ flexGrow: 1, cursor: "pointer" }} color='secondary'>
-            CareerWins
-          </Typography>
           {
             !token && token!=="" &&token!== undefined ? 
-            <Button onClick={() => handleNavigateLogin()} color="inherit">Login</Button>
+            <Typography onClick={() => handleNavigate()} variant="h6" component="div" sx={{ flexGrow: 1, cursor: "pointer" }} color='secondary'>
+              WorkWins
+            </Typography>
             :
-            <Button onClick={() => handleLogout()} color="inherit">Logout</Button>
+            <Typography onClick={() => handleHomeNavigate()} variant="h6" component="div" sx={{ flexGrow: 1, cursor: "pointer" }} color='secondary'>
+              WorkWins
+            </Typography>
+          }
+          
+
+          {
+            !token && token!=="" &&token!== undefined ? 
+            <Button onClick={() => handleNavigateLogin()} color="inherit">Sign In</Button>
+            :
+            <Button onClick={() => handleLogout()} color="inherit">Sign Out</Button>
           }
           
         </Toolbar>
