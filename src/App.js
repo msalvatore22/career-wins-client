@@ -6,12 +6,14 @@ import Home from './routes/home/Home';
 import NotFound from './components/notFound/NotFound';
 import WinDetail from './routes/winDetail/WinDetail';
 import NavBar from './components/navbar/NavBar';
+import NavBar2 from './components/navbar/NavBar2';
 import WinForm from './routes/form/WinForm';
 import SignUp from './routes/signUp/SignUp';
 import SignIn from './routes/signIn/SignIn';
 import Landing from './routes/landing/Landing';
 import useToken from './hooks/useToken';
 import TokenContext from './TokenContext';
+import WinList from './components/winList/WinList';
 
 function App() {
   const { token, removeToken, setToken } = useToken();
@@ -20,7 +22,7 @@ function App() {
     <TokenContext.Provider value={{token}}>
     <ThemeProvider theme={theme}>
     <div className="App">
-      <NavBar removeToken={removeToken} ></NavBar>
+      <NavBar2 removeToken={removeToken} ></NavBar2>
       
       <Routes>
         
@@ -34,7 +36,7 @@ function App() {
             : 
             (
               <>
-                <Route path="/home" element={<Home />}></Route>
+                <Route path="/wins" element={<WinList />}></Route>
                 <Route path="wins/:id" element={<WinDetail />}></Route>
                 <Route path="wins/create" element={<WinForm />}></Route>
                 <Route path="wins/edit/:id" element={<WinForm />}></Route>

@@ -36,6 +36,7 @@ export default function SignUp() {
   const [industry, setIndustry] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate();
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -47,14 +48,8 @@ export default function SignUp() {
         jobTitle,
         industry
       })
-      handleNavClick()
+      navigate("/wins")
   };
-
-  let navigate = useNavigate();
-
-  const handleNavClick = () => {
-    navigate("/signIn")
-  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -155,7 +150,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="" variant="body2" onClick={() => handleNavClick()}>
+                <Link href="" variant="body2" onClick={() => navigate("/signin")}>
                   Already have an account? Sign in
                 </Link>
               </Grid>

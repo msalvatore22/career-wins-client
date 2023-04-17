@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../../api/axiosConfig'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,7 +14,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -34,16 +34,7 @@ export default function SignIn(props) {
   const {setToken} = props
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
-  let navigate = useNavigate();
-
-  const handleNavClick = () => {
-    navigate("/signup")
-  }
-
-  const handleLoginNav = () => {
-    navigate("/home")
-  }
+  const navigate = useNavigate();
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,7 +46,7 @@ export default function SignIn(props) {
       console.log(res.data.access_token)
       setToken(res.data.access_token)
     }
-    handleLoginNav()
+    navigate('/wins')
   };
 
   return (
@@ -118,7 +109,7 @@ export default function SignIn(props) {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="" variant="body2" onClick={() => handleNavClick()}>
+                <Link href="" variant="body2" onClick={() => navigate('/signUp')}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
