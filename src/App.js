@@ -21,6 +21,7 @@ function App() {
     <ThemeProvider theme={theme}>
     <div className="App">
       <NavBar removeToken={removeToken} ></NavBar>
+      
       <Routes>
         
           {

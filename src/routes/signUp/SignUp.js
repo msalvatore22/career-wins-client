@@ -32,6 +32,8 @@ export default function SignUp() {
 
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
+  const [jobTitle, setJobTitle] = useState("")
+  const [industry, setIndustry] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   
@@ -41,7 +43,9 @@ export default function SignUp() {
         firstName,
         lastName,
         email,
-        password
+        password,
+        jobTitle,
+        industry
       })
       handleNavClick()
   };
@@ -93,6 +97,28 @@ export default function SignUp() {
                   name="lastName"
                   autoComplete="family-name"
                   onChange={(e) => setLastName(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="jobTitle"
+                  label="Job Title"
+                  name="jobTitle"
+                  autoComplete="jobTitle"
+                  onChange={(e) => setJobTitle(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="industry"
+                  label="Industry"
+                  name="industry"
+                  autoComplete="industry"
+                  onChange={(e) => setIndustry(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>

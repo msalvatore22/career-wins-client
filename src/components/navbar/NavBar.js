@@ -34,11 +34,14 @@ export default function NavBar(props) {
         method: "POST",
         url: "/logout"
       })
+      if (res.status === 200){
+        removeToken()
+        navigate("/")
+      }
     } catch(error){
       console.log(error)
     }
-    removeToken()
-    navigate("/signIn")
+    
   }
 
   return (

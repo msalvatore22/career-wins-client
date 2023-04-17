@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import GradeIcon from '@mui/icons-material/Grade';
 import InfoIconButton from '../icons/InfoIconButton';
 import TokenContext from '../../TokenContext';
+import { Typography } from '@mui/material';
 
 const WinList = () => {
   const [wins, setWins] = useState();
@@ -36,6 +37,11 @@ const WinList = () => {
   return (
     <TableContainer sx={{ minWidth: 640, maxWidth: 1200, display: 'flex', justifyContent: "center" }}  component={Paper}>
       <Table aria-label="simple table">
+        <TableHead>
+          <Typography variant='h5'>
+            My Wins
+          </Typography>
+        </TableHead>
         <TableHead>
           <TableRow>
             <TableCell align="left">Date</TableCell>
